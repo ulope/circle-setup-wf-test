@@ -5,39 +5,12 @@ setup: true
 orbs:
     path-filtering: circleci/path-filtering@0.0.2
 
-parameters:
-  p1:
-    type: boolean
-    default: false
-  p2:
-    type: boolean
-    default: false
-
-executors:
-  docker:
-    docker:
-        - image: circleci/python:3.7
-
-jobs:
-    run-stuff:
-        executor: docker
-        steps:
-            - run: echo P1:<< pipeline.parameters.p1 >>
-            - run: echo P2:<< pipeline.parameters.p2 >>
-
-
 workflows:
     generate-config:
         jobs:
             - path-filtering/filter:
                 base-revision: master
-                config-path: .circleci/config.yml
+                config-path: .circleci/continue.yml
                 mapping: |
                     a/.* p1 true
                     b/.* p2 true
-
-    other:
-        when: 
-            or: [<< pipeline.parameters.p1 >>, << pipeline.parameters.p2 >>]
-        jobs:
-            - run-stuff
