@@ -20,15 +20,14 @@ parameters:
 # our defined jobs
 jobs:
   check-updated-files:
-    steps:
-      - path-filtering/filter:
-          # 3-column, whitespace-delimited mapping. One mapping per line: <regex path-to-test> <parameter-to-set> <value-of-pipeline-parameter>.
-          mapping: |
-            project-a/.* run-project-a true
-            project-b/.* run-project-b true
-          base-revision: master
-          # this is the path of the configuration we should trigger once path filtering and pipeline parameter value updates are complete. In this case, we are using the parent dynamic configuration itself.
-          config-path: ".circleci/config.yml"
+    - path-filtering/filter:
+        base-revision: master
+        # this is the path of the configuration we should trigger once path filtering and pipeline parameter value updates are complete. In this case, we are using the parent dynamic configuration itself.
+        config-path: ".circleci/config.yml"
+        # 3-column, whitespace-delimited mapping. One mapping per line: <regex path-to-test> <parameter-to-set> <value-of-pipeline-parameter>.
+        mapping: |
+          project-a/.* run-project-a true
+          project-b/.* run-project-b true
         
   build-project-a:
     - run: echo "A"
