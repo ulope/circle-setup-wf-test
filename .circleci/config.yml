@@ -41,11 +41,11 @@ workflows:
   project-a:
     when: << pipeline.parameters.run-project-a >>
     jobs:
-      - build-service-1
+      - build-project-a
   project-b:
     when: << pipeline.parameters.run-project-b >>
     jobs:
-      - build-service-2
+      - build-project-b
   always-run:
     jobs:
       - check-updated-files
