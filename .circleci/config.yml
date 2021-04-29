@@ -1,4 +1,7 @@
 version: "2.1"
+
+setup: true
+
 orbs:
     path-filtering: circleci/path-filtering@0.0.2
 
@@ -16,10 +19,6 @@ executors:
         - image: circleci/python:3.7
 
 jobs:
-    check-env:
-        executor: docker
-        steps:
-            - run: env
     run-stuff:
         executor: docker
         steps:
@@ -30,7 +29,6 @@ jobs:
 workflows:
     generate-config:
         jobs:
-            - check-env
             - path-filtering/filter:
                 base-revision: master
                 config-path: .circleci/continue-config.yml
