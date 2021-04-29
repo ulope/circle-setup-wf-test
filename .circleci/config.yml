@@ -10,6 +10,11 @@ parameters:
     type: boolean
     default: false
 
+executors:
+  docker:
+    docker:
+        - image: circleci/python:3.7
+
 workflows:
     generate-config:
         jobs:
@@ -24,5 +29,7 @@ workflows:
         when: 
             or: [<< pipeline.parameters.p1 >>, << pipeline.parameters.p2 >>]
         jobs:
-            - run: echo P1:<< pipeline.parameters.p1 >>
-            - run: echo P2:<< pipeline.parameters.p2 >>
+            executor: docker
+            steps:
+                - run: echo P1:<< pipeline.parameters.p1 >>
+                - run: echo P2:<< pipeline.parameters.p2 >>
