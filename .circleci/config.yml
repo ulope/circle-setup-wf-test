@@ -32,7 +32,7 @@ jobs:
   build-project-a:
     - run: echo "A"
 
-  build-project-a:
+  build-project-b:
     - run: echo "B"
 
 
