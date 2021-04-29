@@ -31,7 +31,7 @@ workflows:
         jobs:
             - path-filtering/filter:
                 base-revision: master
-                config-path: .circleci/continue-config.yml
+                config-path: .circleci/config.yml
                 mapping: |
                     a/.* p1 true
                     b/.* p2 true
