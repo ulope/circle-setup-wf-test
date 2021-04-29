@@ -20,7 +20,7 @@ parameters:
 # our defined jobs
 jobs:
   check-updated-files:
-    - path-filtering/filter:
+    path-filtering/filter:
         base-revision: master
         # this is the path of the configuration we should trigger once path filtering and pipeline parameter value updates are complete. In this case, we are using the parent dynamic configuration itself.
         config-path: ".circleci/config.yml"
